@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+
+  # MariaDB database
+  maria_db:
+    image: mariadb:latest
+    container_name: maria_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: db_devops
+      MYSQL_USER: user_devops
+      MYSQL_PASSWORD: pass_devops
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512m"
+    networks:
+      - devops-net
+
+  # phpMyAdmin for visualizing the database
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: maria_db
+      PMA_USER: user_devops
+      PMA_PASSWORD: pass_devops
+    ports:
+      - "8081:80"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: "256m"
+    networks:
+      - devops-net
+
+  # Application nestJS
+  app:
+    build: .
+    container_name: app_devops
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - maria_db
+    ports:
+      - "3000:3000"
+    networks:
+      - devops-net
+
+volumes:
+  db_data:
+
+networks:
+  devops-net:
