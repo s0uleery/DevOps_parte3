@@ -1,0 +1,18 @@
+@domain=http://localhost:3000
+
+### GET USERS
+GET {{domain}}/users
+
+### GET USER BY ID
+@id=394bccbf-d0de-4f56-9bba-86f043032ab2
+
+GET {{domain}}/users/{{id}}
+
+### CREATE USER
+POST {{domain}}/users
+Content-Type: application/json
+
+{
+  "name": "Claudio",
+  "age": 26
+}
