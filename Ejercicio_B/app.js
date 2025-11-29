@@ -4,12 +4,12 @@ const PORT = process.env.PORT || 3000;
 
 // ruta inicial
 app.get("/", (req, res) => {
-  res.send("Aplicación levantada");
+  res.send("Ruta inicial funcionando *-*");
 });
 
 // ruta nueva
 app.get("/nueva", (req, res) => {
-  res.send("Nueva ruta para Azure");
+  res.send("Nueva ruta para Azure *o*");
 });
 
 app.listen(PORT, () => {
