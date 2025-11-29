@@ -17,5 +17,6 @@ Desde la carpeta `Ejercicio_A` hay que ejecutar:
 
 ```bash
 docker compose up --build
+```
 
 **Recordar tener docker desktop corriendo para un correcto build**
