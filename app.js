@@ -7,10 +7,12 @@ app.get("/", (req, res) => {
   res.send("Ruta inicial funcionando *-*");
 });
 
-// ruta nueva
+// ruta nueva 
+/*
 app.get("/nueva", (req, res) => {
   res.send("Nueva ruta para Azure *o* ");
-});
+}); 
+*/
 
 app.listen(PORT, () => {
   console.log(`Servidor en puerto ${PORT}`);
